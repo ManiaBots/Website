@@ -1,0 +1,92 @@
+<script>
+    for (let i = 0;i < partnerCount;i++) {
+        const partner = partners[i],
+            website = partner.links?.filter(x => x.type == "website")[0],
+            discord = partner.links?.filter(x => x.type == "discord")[0];
+
+        $(".partners").append(`
+            <div class="partner" style="border:.2vh solid rgba(${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)},${Math.floor(Math.random() * 255)}, 1)")>
+                <img src="${partner.image}">
+                <span class="partnerName" title="${partner.description}">${partner.name}</span><br>
+                <span class="partnerDesc">${partner.type}</span>
+                <div class="links">
+                    ${website ?  `<a class="fas fa-globe link" href="${website.url}"></a>` : ""}    
+                    ${discord ?  `<a class="fab fa-discord link" href="${discord.url}"></a>` : ""}    
+                </div>
+            </div>
+        `);
+    }
+</script>
+
+<div class="partners"></div>
+
+<title>Fyre • Affiliates</title>
+
+<style>
+    .partners {
+        transform: translate(-50%, 0);
+        position: absolute;
+        left: 50%;
+        top: -15vh;
+    }
+
+    .partner {
+        margin-bottom: 5vh;
+        border-radius: .4vh;
+        width: 50vh;
+        height: 15vh;
+        background: rgba(255,255,255,0.05);
+        font-size: 2vh;
+        border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .partner img {
+        border-radius: 50%;
+        width: 12vh;
+        height: 12vh;
+        position: absolute;
+        left: 5vh;
+        margin-top: -7vh;
+        transform: translate(-25%, 70%);
+    }
+
+    .partnerName {
+        position: absolute;
+        left: 30%;
+        transform: translate(0.5%, 130%);
+        width: 100%;
+        text-align: left;
+        font-size: 2.5vh;
+    }
+
+    .partnerDesc {
+        position: absolute;
+        left: 30.5%;
+        transform: translate(0.5%, 250%);
+        text-align: left;
+        font-size: 1.5vh;
+        opacity: .5;
+    }
+
+    .links {
+        text-align: right;
+        position: absolute;
+        right: 2vh;
+        transform: translate(0%, 70%);
+        z-index: 999;
+        font-size: 3vh;
+        width: 100%;
+    }
+
+
+    .link {
+        margin-left: 1vh;
+        cursor: pointer;
+        color: rgba(255,255,255,.5)
+    }
+
+    .link:hover {
+        opacity: .1;
+    }
+
+</style>

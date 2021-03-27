@@ -1,0 +1,36 @@
+{
+    "partners": [
+        {
+            "name": "xHosts",
+            "description": "Professional Web Solutions",
+            "image": "https://branding.maniabots.xyz/partners/Exotic/logo-circle.png",
+            "type": "Hosting provider",
+            "links": [
+                {
+                    "type": "discord",
+                    "url" : "https://discord.gg/SVZY4rF3Tu"
+                },
+                {
+                    "type": "website",
+                    "url" : "https://xhosts.uk/"
+                }
+            ]
+        },
+        {
+            "name": "UpBeat",
+            "description": "UpBeat is a non-profit international radio which provides non-stop, quality radio entertainment.",
+            "image": "https://upbeatradio.net/v3/_images_/v3logo.png",
+            "type": "Online Radio",
+            "links": [
+                {
+                    "type": "discord",
+                    "url" : "https://upbeat.pw/discord"
+                },
+                {
+                    "type": "website",
+                    "url" : "https://upbeatradio.net"
+                }
+            ]
+        }
+    ]
+}

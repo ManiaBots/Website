@@ -1,0 +1,62 @@
+<div class="nav">
+    <a class="navMain" href="/home">Home</a>
+    <a class="navMain" href="/statistics">Statistics</a>
+    <a class="navMain" href="/bots">Bots</a>
+    <a class="navMain" href="/affiliates">Affiliates</a>
+    <a class="navMain" href="/apply">Apply</a>
+
+    <% if(logged) { %>
+        <div class="dropdown" style="float:right;">
+            <img id="logIcon" style="float:right;margin-right:3vh;border-radius:50%;margin-top:0vh;width:3vh;" src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.webp">
+            <div class="dropdown-content">
+                <a href="/admin"><i class="fas fa-cog"></i> Admin</a><br>
+                <a href="/logout"><i class="fas fa-sign-out-alt" style="color: rgba(255,110,110, .9)"></i> Logout</a>
+            </div>
+            <span style="float:right;margin-right:1vh;border-radius:50%;margin-top:.5vh;width:5vh;direction:rtl;">Callum#6052</span>
+        </div>
+    <% } else { %>
+        <a href="/login" class="navRight" id="login">Login</a>
+    <% } %>
+</div>
+<div class="content"></div>
+</body>
+
+<style>
+    .dropdown {
+        float: right;
+    }
+
+    .dropbtn {
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 2.5vh;
+        top: 3.8vh;
+        color: white!important;
+        background-color: rgb(58, 58, 58);
+        z-index: 1;
+        border-radius: 1vh;
+    }
+
+    .dropdown-content a {
+        color: white;
+        padding: 1vh;
+        text-decoration: none;
+        display: block;
+    }
+
+    .nav a:hover {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+</style>
