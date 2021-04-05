@@ -17,7 +17,7 @@ passport.use(new Strategy({
     scope: ['identify', 'guilds.join', 'connections', 'guilds']
 }, (_t, _r, profile, done) => process.nextTick(() => done(null, profile))) as undefined);
 
-app.listen(3002, () => console.log("Online"));
+app.listen(3900, () => console.log("Online"));
 
 app.use(session({ secret: process.env.SECRET, resave: true, saveUninitialized: true }));
 
