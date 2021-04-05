@@ -11,8 +11,6 @@ export class Database {
 			useUnifiedTopology: true,
 			useNewUrlParser: true
         });
-        process.stdout.moveCursor(0, -1);
-        process.stdout.clearLine(1);
         console.log(chalk.bgGreen(" ") + " Database... connected!");
         this.connected = true;
         this.db = db.db("FyreSite");
