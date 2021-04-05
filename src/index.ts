@@ -13,7 +13,7 @@ passport.deserializeUser((user, done) => done(null, user));
 passport.use(new Strategy({
     clientID: process.env.clientId,
     clientSecret: process.env.clientSecret,
-    callbackURL: process.argv.includes("--dev") ? 'http://localhost:3002/login' : "https://beta.maniabots.xyz/login",
+    callbackURL: process.argv.includes("--dev") ? 'http://localhost:3900/login' : "https://beta.maniabots.xyz/login",
     scope: ['identify', 'guilds.join', 'connections', 'guilds']
 }, (_t, _r, profile, done) => process.nextTick(() => done(null, profile))) as undefined);
 
