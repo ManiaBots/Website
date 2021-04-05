@@ -1,0 +1,20 @@
+name: DePloY
+on:
+  push:
+    branches: master
+
+jobs:
+  DePloY:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Deploying...
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSHHOST }}
+          username: ${{ secrets.SSHUSERNAME }}
+          password: ${{ secrets.SSHPASSWORD }}
+          script: |
+            cd /var/beta-site
+            git pull origin new
+            npm run compile
+            pm2 restart 7
