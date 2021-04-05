@@ -31,6 +31,18 @@
                     "url" : "https://upbeatradio.net"
                 }
             ]
+        },
+        {
+            "name": "Silver Community",
+            "description": "TBA",
+            "image": "https://i.imgur.com/jbG4gdr.png",
+            "type": "Discord Community",
+            "links": [
+                {
+                    "type": "discord",
+                    "url": "https://discord.gg/fET7nhapVq"
+                }
+            ]
         }
     ]
 }

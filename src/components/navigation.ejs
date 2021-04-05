@@ -12,7 +12,7 @@
                 <a href="/admin"><i class="fas fa-cog"></i> Admin</a><br>
                 <a href="/logout"><i class="fas fa-sign-out-alt" style="color: rgba(255,110,110, .9)"></i> Logout</a>
             </div>
-            <span style="float:right;margin-right:1vh;border-radius:50%;margin-top:.5vh;width:5vh;direction:rtl;">Callum#6052</span>
+            <span style="float:right;margin-right:1vh;border-radius:50%;margin-top:.5vh;width:5vh;direction:rtl;"><%- user.username %>#<%- user.discriminator %></span>
         </div>
     <% } else { %>
         <a href="/login" class="navRight" id="login">Login</a>

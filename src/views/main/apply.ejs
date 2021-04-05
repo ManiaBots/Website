@@ -3,19 +3,55 @@
     <input class="small" type="input" id="name" placeholder="Name" required>
     <input class="small" type="number" min="13" id="age" placeholder="Age" required>
     <br><br><br><br><h2><i class="fas fa-scroll"></i> Application</h2><br>
-    <input class="small" type="input" id="discord" placeholder="Discord (User#0000)">
-    <select class="small" name="cars" id="cars">
+    <input class="small" type="input" id="discord" value="<%- user.username %>#<%- user.discriminator %>" style="cursor:not-allowed;" disabled>
+    <select class="small" name="position" id="position">
         <option value="" disabled selected>Select position...</option>
         <option value="developer">Developer</option>
         <option value="discordmod">Discord Moderator</option>
       </select><br><br>
     <input class="large" type="input" id="why" placeholder="Why are you applying for this position?"><br>
     <input class="large" type="input" id="previous" placeholder="Do you have previous experience within this position?"><br>
-    <input class="large" type="input" id="other" placeholder="Anything else you would like to add?">
+    <input class="large" type="input" id="other" placeholder="Anything else you would like to add? (optional)">
 
     <br><br><input type="submit" id="submit" value="Submit" onclick="event.preventDefault();"/>
 </form>
 
+<script>
+    $("#submit").click(() => {
+        const inputCheck = ["name", "age", "position", "why", "previous", "discord"],
+            data = {};
+        let missing = false;
+        for(const input of inputCheck) {
+            data[input] = $(`#${input}`)[0].value;
+            if(!$(`#${input}`)[0].value.length > 0) {
+                $(`#${input}`).css("border", ".2vh solid red");
+                missing = true;
+            } else $(`#${input}`).css("border", ".2vh solid green");
+        }
+
+        $("#progress").css("width", "0%");
+        $("#progress").css("display", "block");
+        $("#progress").width((50 + Math.random() * 30) + "%");
+
+        if(!missing)
+            $.ajax("/postApplication", {
+                dataType: "json",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: response => {
+                    $("#progress").width((50 + Math.random() * 30) + "%");
+                    $(".content").html(response);
+                },
+                error: e => {
+                    console.log(e)
+                    $("#progress").width((50 + Math.random() * 30) + "%");
+                    $(".content").html(e.responseText);
+                }
+            })
+        else $("#progress").width((50 + Math.random() * 30) + "%");
+    })
+</script>
 
 <style>
     .page {
@@ -55,6 +91,10 @@
 
     select, input[type="input"], input[type="number"] {
         margin: 2px;
-        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+    ::placeholder {
+        color: rgba(255,255,255,.7);
     }
 </style>
