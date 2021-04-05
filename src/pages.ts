@@ -1,7 +1,13 @@
 export default {
-    home: "home.ejs",
-    affiliates: "affiliates.ejs",
-    admin: "admin.ejs",
-    apply: "apply.ejs",
-    bots: "bots.ejs"
+    main: {
+        home: "home.ejs",
+        affiliates: "affiliates.ejs",
+        apply: "apply.ejs",
+        bots: "bots.ejs",
+        status: "status.ejs"
+    },
+    admin: {
+        home: "home.ejs",
+        applications: "applications.ejs"
+    }
 };

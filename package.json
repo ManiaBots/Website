@@ -1,14 +1,13 @@
 {
-  "name": "bounce-verify",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "fyre-website",
+  "version": "3.0.0",
+  "main": "src/index",
   "license": "MIT",
   "scripts": {
     "start": "node --trace-warnings dist/index",
     "compile": "yarn --silent && rimraf dist && tsc && yarn copyFiles",
     "copyFiles": "copyfiles -f src/styles/* dist/styles && copyfiles -f src/assets/* dist/assets",
-    "quick": "yarn compile && yarn start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "quick": "yarn run eslint src && yarn compile && yarn start"
   },
   "dependencies": {
     "axios": "^0.21.1",

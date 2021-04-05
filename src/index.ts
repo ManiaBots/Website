@@ -24,15 +24,27 @@ app.use(session({ secret: process.env.SECRET, resave: true, saveUninitialized: t
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/", (req, res) => res.render(`${process.cwd()}/src/views/index.ejs`, { user: req.user, logged: req.user ? true : false }));
+app.get("/", (req, res) => res.render(`${process.cwd()}/src/views/main/index.ejs`, { user: req.user, logged: req.user ? true : false }));
+app.get("/admin", (req, res) => {
+    if(!req.user) return res.redirect("/");
+    res.render(`${process.cwd()}/src/views/admin/index.ejs`, { user: req.user, logged: req.user ? true : false })
+});
 
 app.get("/router", (req, res) => {
-    const page = req.query.page as string;
-    if(page == "admin" && (!req.user || !["506899274748133376"].includes((req.user as any).id))) 
-        return res.render(`${process.cwd()}/src/views/error.ejs`, { msg: "The admin page is restricted to site administration (400)" });
-    if(page == "#") return res.send("#");
-    if(pages[page]) res.render(`${process.cwd()}/src/views/${pages[page]}`, { user: req.user, logged: req.user ? true : false });
-    else res.render(`${process.cwd()}/src/views/error.ejs`, { msg: "That page could not be found! (404)" });
+    let page = req.query.page as string;
+    if(page.startsWith("admin-")) {
+        if(!req.user || !["506899274748133376"].includes((req.user as any).id))
+            return res.render(`${process.cwd()}/src/views/error.ejs`, { msg: "The admin page is restricted to site administration (400)" });
+        if(pages.admin[page.replace("admin-", "")])
+            return res.render(`${process.cwd()}/src/views/admin/${pages.admin[page.replace("admin-", "")]}`, { user: req.user, logged: req.user ? true : false });
+
+        res.render(`${process.cwd()}/src/views/error.ejs`, { msg: "That page could not be found! (404)" });    
+    } else {
+        if(pages.main[page]) 
+            return res.render(`${process.cwd()}/src/views/main/${pages.main[page]}`, { user: req.user, logged: req.user ? true : false });
+
+        res.render(`${process.cwd()}/src/views/error.ejs`, { msg: "That page could not be found! (404)" });    
+    }
 });
 
 app.get("/login", passport.authenticate('discord', { failureRedirect: '/' }), (req, res) => res.redirect("/"));

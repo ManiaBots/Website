@@ -1,0 +1,31 @@
+<form>
+    <input type="input" id="nickname" placeholder="&#xf007; Nickname"><input type="input" id="roomName" placeholder="&#xf086; Room Name">
+    <input type="submit" id="joinRoom" value="Join Room" onclick="event.preventDefault();"/><input type="submit" id="createRoom" value="Create Room" onclick="event.preventDefault();"/>
+</form>
+
+
+<style>
+    input {
+        border-radius: 10px;
+        border: .1vh solid black;
+        width: 98%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        text-align: left;
+    }
+
+    input[type="submit"] {
+        text-align: center;
+        max-width: 48%;
+        margin: 2px;
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    input[type="input"] {
+        max-width: 48%;
+        margin: 2px;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+</style>

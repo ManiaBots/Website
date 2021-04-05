@@ -1,15 +1,10 @@
-<div class="nav">
-    <a class="navMain" href="/home">Home</a>
-    <a class="navMain" href="/status">Status</a>
-    <a class="navMain" href="/bots">Bots</a>
-    <a class="navMain" href="/affiliates">Affiliates</a>
-    <a class="navMain" href="/apply">Apply</a>
-
+<div class="nav fyre2">
+    <a class="navMain fyre" href="/fyre">FYRE</a>
     <% if(logged) { %>
         <div class="dropdown" style="float:right;">
             <img id="logIcon" style="float:right;margin-right:3vh;border-radius:50%;margin-top:0vh;width:3vh;" src="https://cdn.discordapp.com/avatars/<%- user.id %>/<%- user.avatar %>.webp">
             <div class="dropdown-content">
-                <a href="/admin"><i class="fas fa-cog"></i> Admin</a><br>
+                <a href="http://localhost:3002" onclick="window.location.pathname = '/'"><i class="fas fa-home"></i> Main</a><br>
                 <a href="/logout"><i class="fas fa-sign-out-alt" style="color: rgba(255,110,110, .9)"></i> Logout</a>
             </div>
             <span style="float:right;margin-right:1vh;border-radius:50%;margin-top:.5vh;width:5vh;direction:rtl;">Callum#6052</span>
@@ -18,9 +13,56 @@
         <a href="/login" class="navRight" id="login">Login</a>
     <% } %>
 </div>
+
+<div class="nav-admin">
+    <div class="navMain-admin" onclick="adminDirect('home')"><i class="fas fa-home icon"></i>Home</div>
+    <div class="navMain-admin" onclick="adminDirect('applications')"><i class="fas fa-book icon"></i>Applications</div>
+</div>
 </body>
 
 <style>
+    .icon {
+        margin-right: 1vh;
+    }
+
+    .fyre {
+        letter-spacing: 3vh;
+        left: 2vh;
+        top: -.5vh;
+        font-size: 4vh;
+        position: absolute;
+        cursor: default;
+    }
+
+    .fyre2 {
+        background: none;
+    }
+
+    .nav-admin {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 25vh;
+        height: 100%;
+        background-color: rgba(255,255,255,.05);
+        box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .navMain-admin {
+        cursor: pointer;
+        z-index: 70;
+        position: relative;
+        top: 10vh;
+        left: 3vh;
+        display: block;
+        margin-bottom: 3vh;
+        text-align: left;
+    }
+
+    .navMain-admin:hover {
+        opacity: .7;
+    }
+
     .dropdown {
         float: right;
     }
