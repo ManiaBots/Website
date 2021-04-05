@@ -1,31 +1,60 @@
-<form>
-    <input type="input" id="nickname" placeholder="&#xf007; Nickname"><input type="input" id="roomName" placeholder="&#xf086; Room Name">
-    <input type="submit" id="joinRoom" value="Join Room" onclick="event.preventDefault();"/><input type="submit" id="createRoom" value="Create Room" onclick="event.preventDefault();"/>
+<form class="page">
+    <h2><i class="fas fa-address-card"></i> Identification</h2><br>
+    <input class="small" type="input" id="name" placeholder="Name" required>
+    <input class="small" type="number" min="13" id="age" placeholder="Age" required>
+    <br><br><br><br><h2><i class="fas fa-scroll"></i> Application</h2><br>
+    <input class="small" type="input" id="discord" placeholder="Discord (User#0000)">
+    <select class="small" name="cars" id="cars">
+        <option value="" disabled selected>Select position...</option>
+        <option value="developer">Developer</option>
+        <option value="discordmod">Discord Moderator</option>
+      </select><br><br>
+    <input class="large" type="input" id="why" placeholder="Why are you applying for this position?"><br>
+    <input class="large" type="input" id="previous" placeholder="Do you have previous experience within this position?"><br>
+    <input class="large" type="input" id="other" placeholder="Anything else you would like to add?">
+
+    <br><br><input type="submit" id="submit" value="Submit" onclick="event.preventDefault();"/>
 </form>
 
 
 <style>
-    input {
+    .page {
+        transform: translate(-50%, 0);
+        position: absolute;
+        left: 50%;
+        top: -10vh;
+        width: 50vh;
+    }
+
+    h2, label {
+        display: block;
+        margin-left: 1vh;
+        text-align: left;
+    }
+
+    select, input {
+        font-family: "Inter", FontAwesome;
         border-radius: 10px;
         border: .1vh solid black;
         width: 98%;
-        padding: 12px 20px;
-        margin: 8px 0;
+        padding: 1vh 1vh;
         box-sizing: border-box;
         text-align: left;
     }
 
+    .large { padding-bottom: 3vh; }
+
+    .small { max-width: 48%; }
+
     input[type="submit"] {
         text-align: center;
-        max-width: 48%;
         margin: 2px;
         cursor: pointer;
         background-color: rgba(255, 255, 255, 0.3);
     }
 
-    input[type="input"] {
-        max-width: 48%;
+    select, input[type="input"], input[type="number"] {
         margin: 2px;
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.1);
     }
 </style>

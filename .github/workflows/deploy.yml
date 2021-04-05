@@ -17,4 +17,4 @@ jobs:
             cd /var/beta-site
             git pull origin new
             npm run compile
-            pm2 restart 7
+            pm2 restart 9

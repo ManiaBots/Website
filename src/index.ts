@@ -13,9 +13,9 @@ passport.deserializeUser((user, done) => done(null, user));
 passport.use(new Strategy({
     clientID: process.env.clientId,
     clientSecret: process.env.clientSecret,
-    callbackURL: 'http://localhost:3002/login',
+    callbackURL: process.argv.includes("--dev") ? 'http://localhost:3002/login' : "https://beta.maniabots.xyz/login",
     scope: ['identify', 'guilds.join', 'connections', 'guilds']
-}, (t, r, profile, done) => process.nextTick(_ => done(null, profile))) as any);
+}, (_t, _r, profile, done) => process.nextTick(() => done(null, profile))) as undefined);
 
 app.listen(3002, () => console.log("Online"));
 
@@ -27,13 +27,13 @@ app.use(passport.session());
 app.get("/", (req, res) => res.render(`${process.cwd()}/src/views/main/index.ejs`, { user: req.user, logged: req.user ? true : false }));
 app.get("/admin", (req, res) => {
     if(!req.user) return res.redirect("/");
-    res.render(`${process.cwd()}/src/views/admin/index.ejs`, { user: req.user, logged: req.user ? true : false })
+    res.render(`${process.cwd()}/src/views/admin/index.ejs`, { user: req.user, logged: req.user ? true : false });
 });
 
 app.get("/router", (req, res) => {
-    let page = req.query.page as string;
+    const page = req.query.page as string;
     if(page.startsWith("admin-")) {
-        if(!req.user || !["506899274748133376"].includes((req.user as any).id))
+        if(!req.user || !["506899274748133376"].includes((req.user as {id}).id))
             return res.render(`${process.cwd()}/src/views/error.ejs`, { msg: "The admin page is restricted to site administration (400)" });
         if(pages.admin[page.replace("admin-", "")])
             return res.render(`${process.cwd()}/src/views/admin/${pages.admin[page.replace("admin-", "")]}`, { user: req.user, logged: req.user ? true : false });

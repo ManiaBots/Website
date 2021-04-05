@@ -1,4 +1,4 @@
-setInterval(() => Array.from($("*")).forEach(element => $(element).attr("draggable", "false")), 1000);
+setInterval(() => Array.from($("img")).forEach(element => $(element).attr("draggable", "false")), 1000);
 
 let partners, partnerCount;
 

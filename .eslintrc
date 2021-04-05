@@ -18,6 +18,7 @@
         "project": "./tsconfig.json"
     },
     "rules": {
+        "clientLogLevel": 0,
         "semi": ["warn", "always", { "omitLastInOneLineBlock": true }],
         "no-multiple-empty-lines": [
             "warn",
@@ -42,7 +43,6 @@
             "warn",
             "unix"
         ],
-        "no-console": "error",
         "no-var": "error",
         "no-undef": "off",
         "no-restricted-syntax": [
@@ -56,21 +56,6 @@
         "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/indent": "off"
     },
-    "overrides": [
-        {
-            "env": {
-                "node": true,
-                "mongo": true
-            },
-            "files": [
-                "./*.ts"
-            ],
-            "rules": {
-                "@typescript-eslint/no-non-null-assertion": "off",
-                "no-console": "off"
-            }
-        }
-    ],
     "reportUnusedDisableDirectives": true,
     "noInlineConfig": true,
     "plugins": [

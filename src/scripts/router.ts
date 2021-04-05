@@ -1,8 +1,7 @@
 function router(page) {
-    console.log(page)
     $.ajax({
         type: "GET",
-        url: "http://localhost:3002/router",
+        url: "/router",
         data: { page: page.replace("/admin/", "admin-").replace("/", "") },
         success: response => {
             $("title")[0].innerHTML = `${page.replace("/admin/", "").charAt(0).toUpperCase() + page.replace("/admin/", "").slice(1)} • Fyre`;
@@ -22,7 +21,7 @@ function router(page) {
 const nav = $(".nav");
 nav.map(a =>
     nav[a].addEventListener("click", e => {
-        const href = (e.target as any).href?.split("/"),
+        const href = (e.target as {href?: string}).href?.split("/"),
             admin = window.location.pathname.includes("/admin") ? "/admin/" : "";
         
         if(!href) return;
@@ -32,13 +31,11 @@ nav.map(a =>
         if(href[href.length - 1] == "admin") return;
 
         e.preventDefault();
-        console.log(href[href.length - 1])
         window.history.pushState(null, null, admin + href[href.length - 1]);
 
         $("#progress").css("width", "0%");
         $("#progress").css("display", "block");
         $("#progress").width((50 + Math.random() * 30) + "%");
-
 
         setTimeout(() => router(admin + href[href.length - 1]), 300);
     })
@@ -51,7 +48,7 @@ function adminDirect(page) {
     $("#progress").css("display", "block");
     $("#progress").width((50 + Math.random() * 30) + "%");
 
-    window.history.pushState(null, null, admin + page)
+    window.history.pushState(null, null, admin + page);
     router(admin + page);
 }
 

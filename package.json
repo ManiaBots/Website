@@ -7,7 +7,7 @@
     "start": "node --trace-warnings dist/index",
     "compile": "yarn --silent && rimraf dist && tsc && yarn copyFiles",
     "copyFiles": "copyfiles -f src/styles/* dist/styles && copyfiles -f src/assets/* dist/assets",
-    "quick": "yarn run eslint src && yarn compile && yarn start"
+    "quick": "yarn run eslint src --fix --quiet && yarn compile && yarn start"
   },
   "dependencies": {
     "axios": "^0.21.1",

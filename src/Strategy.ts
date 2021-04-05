@@ -1,11 +1,15 @@
-// @ts-nocheck
 import OAuth2Strategy, { InternalOAuthError } from "passport-oauth2";
 import util from "util";
+import env from "dotenv";
 
-require("dotenv").config();
+env.config();
 
 class Strategy {
-    constructor(options={}, verify) {
+    name: string;
+    _scope: string;
+    _oauth2: OAuth2Strategy;
+
+    constructor(options, verify) {
         options = options || {};
         options.authorizationURL = options.authorizationURL || "https://discord.com/api/oauth2/authorize";
         options.tokenURL = options.tokenURL || "https://discord.com/api/oauth2/token";
@@ -16,23 +20,23 @@ class Strategy {
     }
 
     userProfile(token, done) {
-        const self = this;
         this._oauth2.get("https://discord.com/api/users/@me", token, (err, body) => {
             if(err) return done(new InternalOAuthError("Couldn't fetch user profile.", err));
+            let parsed;
             try {
-                var parsed = JSON.parse(body);
+                parsed = JSON.parse(body);
             } catch {
                 return done(new Error("Couldn't parse user profile."));
             }
             parsed.provider = "discord";
             parsed.accessTOKEN = token;
     
-            self.checkScope("connections", token, (err, conn) => {
+            this.checkScope("connections", token, (err, conn) => {
                 if(err) done(err);
                 if(conn) parsed.connections = conn;
             });
     
-            self.checkScope("guilds", token, (err, guilds) => {
+            this.checkScope("guilds", token, (err, guilds) => {
                 if(err) done(err);
                 if(guilds) parsed.guilds = guilds;
                 parsed.fetchedAt = new Date();
@@ -45,8 +49,9 @@ class Strategy {
         if(this._scope && this._scope.indexOf(scope) !== -1) {
             this._oauth2.get(`https://discord.com/api/users/@me/${scope}`, token, (err, body) => {
                 if(err) return callback(new InternalOAuthError, `Couldn't fetch ${scope}`, err);
+                let json;
                 try {
-                    var json = JSON.parse(body);
+                    json = JSON.parse(body);
                 } catch {
                     return callback(new Error("Couldn't fetch user's " + scope));
                 }
@@ -57,7 +62,7 @@ class Strategy {
     }
 
     authorizationParams(options) {
-        const params = {};
+        const params: {permissions?: string} = {};
         if (typeof options.permissions !== "undefined") 
             params.permissions = options.permissions;
         return params;
