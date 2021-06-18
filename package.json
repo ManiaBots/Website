@@ -12,9 +12,9 @@
     "mongodb": "^3.6.6",
     "next": "10.2.0",
     "next-auth": "^3.19.5",
-    "nextjs-progressbar": "^0.0.9",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-modal": "^3.14.3",
     "sass": "^1.32.12"
   },
   "devDependencies": {

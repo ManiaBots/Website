@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
-import db from '../database';
+import db from '../Database';
 
 export default NextAuth({
     providers: [
@@ -27,11 +27,11 @@ export default NextAuth({
             user && (token.user = user);
             return Promise.resolve(token);
         },
-        session: async (session, user) => {
-            const userr = await (await db('FyreWebsite', 'Users')).findOne({ userId: user.user.id });
+        session: async (session, user: any) => {
+            const userr = await (await db('FyreWebsite', 'Users')).findOne({ userId: user?.user?.id });
             session.user = userr || user.user;
             return Promise.resolve(session);
         },
-        redirect: async () => Promise.resolve('/home')
+        redirect: async () => Promise.resolve('/')
     }
 });
