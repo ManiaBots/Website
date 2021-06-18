@@ -5,7 +5,7 @@ import { signIn, signOut, useSession } from "next-auth/client";
 
 import styles from "../styles/Website.module.scss";
 
-export default function Home() {
+export default function Site() {
 	const [page, setPage] = useState("Home"),
 		[modal, setModal] = useState(false),
 		[session] = useSession();

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 * {
   user-select: none;
@@ -9,7 +9,8 @@
   text-decoration: none;
 }
 
-html, body {
+html,
+body {
   background: #121212;
 }
 
@@ -19,7 +20,7 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,.4);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 10px;
 }
 
@@ -28,7 +29,7 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 section {
