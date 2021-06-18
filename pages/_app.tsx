@@ -1,7 +1,7 @@
-import '../styles/globals.scss';
-import '../styles/bootstrap.scss';
+import "../styles/globals.scss";
+import "../styles/bootstrap.scss";
 
-import Head from 'next/head';
+import Head from "next/head";
 
 export default function Fyre({ Component, pageProps }) {
 	return (
@@ -11,5 +11,5 @@ export default function Fyre({ Component, pageProps }) {
 			</Head>
 			<Component {...pageProps} />
 		</>
-	)
+	);
 }

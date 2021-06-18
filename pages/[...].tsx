@@ -1,14 +1,14 @@
-import Head from 'next/head';
-import { useState } from 'react';
-import Modal from 'react-modal';
-import { signIn, signOut, useSession } from 'next-auth/client'
+import Head from "next/head";
+import { useState } from "react";
+import Modal from "react-modal";
+import { signIn, signOut, useSession } from "next-auth/client";
 
-import styles from '../styles/Website.module.scss';
+import styles from "../styles/Website.module.scss";
 
 export default function Home() {
 	const [page, setPage] = useState("Home"),
 		[modal, setModal] = useState(false),
-		[session] = useSession()
+		[session] = useSession();
 
 	function changePage(e, modal) {
 		e.preventDefault();
@@ -34,7 +34,7 @@ export default function Home() {
 					}
 				</div>
 				<div className={styles.user}>
-					{!session && <a href="#" onClick={() => signIn('discord')}>Login</a>}
+					{!session && <a href="#" onClick={() => signIn("discord")}>Login</a>}
 					{session && <a href="#" onClick={() => signOut()}>{(session as any).user?.username}<span className={styles.discrim}>#{(session as any).user?.discriminator}</span></a>}
 				</div>
 			</div>
@@ -83,5 +83,5 @@ export default function Home() {
 				</div>
 			)}
 		</>
-	)
+	);
 }
