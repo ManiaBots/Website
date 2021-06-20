@@ -48,6 +48,18 @@
     }
 }
 
+.socials a {
+    font-size: 25px;
+    padding: 10px;
+    animation: nohover 0.5s;
+    animation-fill-mode: forwards;
+
+    &:hover {
+        animation: hover 0.5s;
+        animation-fill-mode: forwards;
+    }
+}
+
 .modalOverlay {
     position: fixed;
     top: 0;
@@ -189,7 +201,7 @@
     }
 
     .boxContainer {
-        bottom: 3%;
+        bottom: -5%;
     }
 }
 
@@ -204,7 +216,17 @@
         padding: 5px;
     }
 
+    .long {
+        display: none;
+    }
+
+    .user {
+        right: 3%!important;
+    }
+
     .homeMessage {
+        top: 25%;
+
         h1:nth-child(1) {
             display: block;
         }
@@ -244,5 +266,23 @@
     }
     to {
         border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+}
+
+@keyframes nohover {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes hover {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.5;
     }
 }

@@ -52,9 +52,13 @@ export default function Site() {
 			)}
 
 			<div className={styles.homeMessage}>
-				<h1>Fyre.</h1>
-				<h1>We're Fyre.</h1>
-				<h4>Warming up your discord server, one bot at a time.</h4>
+				<h1>Fyre</h1>
+				<h1>We're Fyre</h1>
+				<h4><span className={styles.long}>Warming up your discord server, one bot at a time.</span></h4>
+				<div className={styles.socials}>
+					<a target="_blank" href="https://discord.gg/X7N5p34" className="fab fa-discord" />
+					<a target="_blank" href="https://twitter.com/callumdev_" className="fab fa-twitter" />
+				</div>
 				<i className="fas fa-chevron-down" />
 			</div>
 
