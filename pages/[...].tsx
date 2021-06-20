@@ -10,7 +10,7 @@ export default function Site() {
 		[modal, setModal] = useState(false),
 		[session] = useSession();
 
-	function changePage(e, modal) {
+	function changePage(e, modal?: number) {
 		e.preventDefault();
 		if (!modal) return setPage(e.target.innerText);
 		setModal(true);
@@ -26,10 +26,10 @@ export default function Site() {
 				<img src="https://branding.maniabots.xyz/new2.png" className={styles.navImage} />
 				<div className={styles.navItems}>
 					<i className="fas fa-bars" style={{ marginLeft: "10px" }} />
-					<a onClick={(e) => changePage(e, 0)} className={styles.navItem}>Home</a>
-					<a onClick={(e) => changePage(e, 0)} className={styles.navItem}>Team</a>
+					<a onClick={changePage} className={styles.navItem}>Home</a>
+					<a onClick={changePage} className={styles.navItem}>Team</a>
 					{session
-						? <a onClick={(e) => changePage(e, 1)} className={styles.navItem}>Apply</a>
+						? <a onClick={e => changePage(e, 1)} className={styles.navItem}>Apply</a>
 						: <a style={{ cursor: "not-allowed" }} className={styles.navItem}>Apply</a>
 					}
 				</div>
